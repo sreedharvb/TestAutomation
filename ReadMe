@@ -1,0 +1,87 @@
+Automation:
+============
+Prerequisties:
+Install intelij
+
+1. Design and create an automation framework
+
+Tools:
+=======
+Test Design - Cucumber (Gherkin)
+Test Execution - Selenium WebDriver, Java
+Test Configuration - Junit
+Test Report - ExtentReports
+Build - Maven
+
+From intelij:
+1. Create a project in Maven
+   File> New> Project> Maven
+
+2. Open pom.xml, inside <project>, add all required libraries
+
+3. Add a "dependencies"tag
+
+<dependencies> </dependencies>
+
+4. Inside the <dependencies> tag add all required libraries
+
+Get the dependencies from Maven site
+https://mvnrepository.com
+  junit 4.13.1
+  Selenium 3.141.59
+  Cucumber JVM Java 1.2.6
+  Cucumber Junit 1.2.6
+  WebDriverManager 4.2.2
+  extentsreports 3.1.2
+  Cucumber ExtentsReport 3.1.1
+Remove <type> and <scope> tags
+
+Right click maven and click Reload Project to load the dependencies
+
+
+5. Designing a Test using Cucumber
+Create a
+- directory in >src>test> features
+- package in >test>java> stepDefinitions
+- package in >main>java>pageObjects
+- package in >main>java>functionLibrary
+- package in >main>java>pageObjects
+
+- dir in src>main>java>resources>errorShots
+- dir in src>main>java>resources>testData
+
+- class in test>java>RunScripts
+@RunWith(Cucumber.class)
+@CucumberOptions(features = ".", tags = {}, dryRun = true)
+public class RunScripts {
+}
+
+- class in test>java>Hooks (to configure all common functions such as open browser, close browser)
+
+6. Create classes in
+- main>java>pageObjects>HomePage
+- main>java>pageObjects>ProductsPage
+etc
+
+- pacakgage >test > stepDefinitions
+
+7. Create features
+- Create a .feature file in >test>features
+
+ create a file with name existingUserLogin.feature
+
+In existingUserLogin.feature tab define the test steps
+Feature:    Verify existing user login
+
+            As an existing user
+            I should login to application
+
+  Scenario: To verify Login popup is displayed
+    Given   Landed on Home Page
+
+    When    I click on Login button
+
+    Then    I should see Login page
+
+8. Run the RunScripts.java with dryRun=true
+9. Copy the Snippets to the appropriate class in test> java> stepDefinitions
